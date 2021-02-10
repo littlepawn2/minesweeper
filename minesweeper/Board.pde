@@ -8,7 +8,7 @@ class Board{
     for(int i=0; i<40; i++){
       for(int j=0; j<30; j++){
         
-        if(random(0, 1) > 0.9){
+        if(random(0, 1) > 0.99){
           grid[i][j] = 10;
         } else {
           grid[i][j] = 0;
@@ -92,6 +92,23 @@ class Board{
       }
     }
     return returnList;
+  }
+  
+  boolean checkLost(Cover cover){
+    //returns true when losing
+    //false when winning
+    for(int i=0; i<40; i++){
+      for(int j=0; j<30; j++){
+        
+        if(cover.getSquare(i, j) == 2){
+          if (grid[i][j] != 10){
+            return true;
+          }
+        }
+        
+      }
+    }
+    return false;
   }
   
 }
