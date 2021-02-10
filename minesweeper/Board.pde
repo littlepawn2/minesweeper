@@ -1,6 +1,7 @@
 class Board{
   
   int[][] grid = new int[40][30];
+  int[][] cover = new int[40][30];
   
   Board(){
     //initialize a random grid of mines
@@ -67,14 +68,30 @@ class Board{
         }
         //draw number or mine
         if(grid[i][j] == 10){
-          circle(i*20+5, j*20+100-5, 10);
+          circle(i*20+10, j*20+100+10, 10);
         } else {
-          text(grid[i][j], i*20, j*20+100);
+          text(grid[i][j], i*20+10, j*20+10+100);
         }
       }
     }
   }
   
+  int getSquare(int x, int y){
+    return grid[x][y];
+  }
   
+  ArrayList<Integer> getSurroundings(int x, int y){
+    ArrayList<Integer> returnList = new ArrayList();
+    for(int i=-1; i<2; i++){
+      for(int j=0; j<2; j++){
+        if(!(i==0 && x==0)){
+          if(i+x>=40 || j+x>=30){
+            returnList.add(grid[x+i][y+j]);
+          }
+        }
+      }
+    }
+    return returnList;
+  }
   
 }
