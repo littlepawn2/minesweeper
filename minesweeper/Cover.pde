@@ -14,9 +14,11 @@ class Cover{
     
     if(board.getSquare(x, y) == 0){
       for(int i=-1; i<2; i++){
-        for(int j=0; j<2; j++){
-          if(!(i+x>=40 || j+x>=30)){
-            cover[x][y] = 0;
+        for(int j=-1; j<2; j++){
+          if(!(i+x<0 || i+x>=40 || y+j<0 || y+j>=30)){
+            if(cover[x+i][y+j] == 1){
+              click(x+i, y+j, board);
+            }
           }
         }
       }
